@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Library.Api/Library.Api.csproj" />
+    <Project Path="src/Library.Client/Library.Client.csproj" />
+    <Project Path="src/Reservation.Worker/Reservation.Worker.csproj" />
+  </Folder>
+</Solution>
