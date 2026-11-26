@@ -1,16 +1,29 @@
 namespace Reservation.Worker;
 
-public class Worker(ILogger<Worker> logger) : BackgroundService
+public class Worker : BackgroundService
 {
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    private readonly ILogger<Worker> _logger;
+
+    public Worker(ILogger<Worker> logger)
     {
+        _logger = logger;
+    }
+
+    protected override async Task ExecuteAsync(
+        CancellationToken stoppingToken)
+    {
+        _logger.LogInformation(
+            "Reservation Worker da khoi dong."
+        );
+
         while (!stoppingToken.IsCancellationRequested)
         {
-            if (logger.IsEnabled(LogLevel.Information))
-            {
-                logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            }
-            await Task.Delay(1000, stoppingToken);
+            _logger.LogInformation(
+                "Worker dang cho yeu cau dat muon sach: {time}",
+                DateTimeOffset.Now
+            );
+
+            await Task.Delay(5000, stoppingToken);
         }
     }
 }
